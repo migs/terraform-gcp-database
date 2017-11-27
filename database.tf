@@ -18,7 +18,7 @@ resource "google_sql_database_instance" "db-primary" {
       start_time = "${var.db-backup-start_time}"
     }
     location_preference {
-      zone = "${lookup(var.region_params["${var.region}"],"zone1"}"
+      zone = "${lookup(var.region_params["${var.region}"],"zone1")}"
     }
   }
 }
@@ -43,7 +43,7 @@ resource "google_sql_database_instance" "db-failover" {
       require_ssl = "true"
     }
     location_preference {
-      zone = "${lookup(var.region_params["${var.region}"],"zone2"}"
+      zone = "${lookup(var.region_params["${var.region}"],"zone2")}"
     }
   }
 }
