@@ -2,8 +2,8 @@ resource "random_id" "db-instance" {
   byte_length = 8
 }
 
-resource "google_sql_database_instance" "db-bosh-primary" {
-  name = "${var.prefix}-db-bosh-primary-${random_id.db-instance.dec}"
+resource "google_sql_database_instance" "db-primary" {
+  name = "${var.prefix}-db-primary-${random_id.db-instance.dec}"
   region = "${var.region}"
   database_version = "${var.db-version}"
   settings {
@@ -23,16 +23,16 @@ resource "google_sql_database_instance" "db-bosh-primary" {
   }
 }
 
-output "db-bosh-primary-ip" {
-  value = "${google_sql_database_instance.db-bosh-primary.ip_address.0.ip_address}"
+output "db-primary-ip" {
+  value = "${google_sql_database_instance.db-primary.ip_address.0.ip_address}"
 }
 
-resource "google_sql_database_instance" "db-bosh-failover" {
-  name = "${var.prefix}-db-bosh-failover-${random_id.db-instance.dec}"
+resource "google_sql_database_instance" "db-failover" {
+  name = "${var.prefix}-db-failover-${random_id.db-instance.dec}"
   region = "${var.region}"
   count = "${var.ha ? 1 : 0}"
   database_version = "${var.db-version}"
-  master_instance_name = "${google_sql_database_instance.db-bosh-primary.name}"
+  master_instance_name = "${google_sql_database_instance.db-primary.name}"
   replica_configuration {
     failover_target = "true"
     }
