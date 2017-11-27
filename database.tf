@@ -3,7 +3,7 @@ resource "random_id" "db-instance" {
 }
 
 resource "google_sql_database_instance" "db-primary" {
-  name = "${var.prefix}-db-primary-${random_id.db-instance.dec}"
+  name = "${var.prefix}-db-${var.db-instance-name}-primary-${random_id.db-instance.dec}"
   region = "${var.region}"
   database_version = "${var.db-version}"
   settings {
@@ -28,7 +28,7 @@ output "db-primary-ip" {
 }
 
 resource "google_sql_database_instance" "db-failover" {
-  name = "${var.prefix}-db-failover-${random_id.db-instance.dec}"
+  name = "${var.prefix}-db-${var.db-instance-name}-failover-${random_id.db-instance.dec}"
   region = "${var.region}"
   count = "${var.ha ? 1 : 0}"
   database_version = "${var.db-version}"
