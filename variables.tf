@@ -1,6 +1,7 @@
 variable "project" { }
 variable "region" { }
 variable "prefix" { default = "default" }
+variable "ha" { default = "false" }
 variable "db-instance-name" { default = "default" }
 variable "db-version" { default = "MYSQL_5_7" }
 variable "db-tier" { default = "db-g1-small" }
