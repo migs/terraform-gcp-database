@@ -10,7 +10,6 @@ resource "google_sql_database_instance" "db-primary" {
     tier = "${var.db-tier}"
     disk_autoresize = "true"
     ip_configuration {
-      require_ssl = "true"
       authorized_networks = [
         {
           value = "${var.authorized_networks}"
