@@ -11,7 +11,7 @@ resource "google_sql_database_instance" "db-primary" {
     disk_autoresize = "true"
     ip_configuration {
       require_ssl = "true"
-      authorized_networks [
+      authorized_networks = [
         {
           value = "${var.authorized_networks["0"]}"
         }
