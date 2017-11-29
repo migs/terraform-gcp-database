@@ -6,7 +6,6 @@ variable "db-instance-name" { default = "default" }
 variable "db-version" { default = "MYSQL_5_7" }
 variable "db-tier" { default = "db-g1-small" }
 variable "db-backup-start_time" { default = "02:00" }
-variable "authorized_networks" { default = [""] }
 
 # Region & Zone Map
 variable "region_params" {
