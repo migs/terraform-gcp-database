@@ -40,7 +40,11 @@ resource "google_sql_database_instance" "db-failover" {
     tier = "${var.db-tier}"
     disk_autoresize = "true"
     ip_configuration {
-      require_ssl = "true"
+      authorized_networks = [
+        {
+          value = "${var.authorized_networks}"
+        }
+      ]
     }
     location_preference {
       zone = "${lookup(var.region_params["${var.region}"],"zone2")}"
