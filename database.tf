@@ -11,6 +11,7 @@ resource "google_sql_database_instance" "db-primary" {
     disk_autoresize = "true"
     ip_configuration {
       require_ssl = "true"
+      authorized_networks = ["${var.authorized_networks}"]
     }
     backup_configuration {
       binary_log_enabled = "true"
@@ -21,10 +22,6 @@ resource "google_sql_database_instance" "db-primary" {
       zone = "${lookup(var.region_params["${var.region}"],"zone1")}"
     }
   }
-}
-
-output "db-primary-ip" {
-  value = "${google_sql_database_instance.db-primary.ip_address.0.ip_address}"
 }
 
 resource "google_sql_database_instance" "db-failover" {
