@@ -13,7 +13,7 @@ resource "google_sql_database_instance" "db-primary" {
       require_ssl = "true"
       authorized_networks = [
         {
-          value = ["${join(",", var.authorized_networks}"]
+          value = ["${split(",", var.authorized_networks}"]
         }
       ]
     }
