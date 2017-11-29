@@ -12,7 +12,7 @@ resource "google_sql_database_instance" "db-primary" {
     ip_configuration {
       require_ssl = "true"
       authorized_networks = {
-        value = ["${split(",", var.authorized_networks)}"]
+        value = "${var.authorized_networks}"
       }
     }
     backup_configuration {
