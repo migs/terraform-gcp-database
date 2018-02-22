@@ -15,7 +15,7 @@ module "bosh-db" {
 }
 ```
 
-The `authorized_networks` variable must be a string, containing either an IP address or a network in CIDR format. In the example above, this is string is an output from the `terraform-gcp-natgateway` module.
+The `authorized_network_x` variables must be a string, containing either an IP address or a network in CIDR format. In the example above, this is string is an output from the `terraform-gcp-natgateway` module.
 
 ## High Availability
 
